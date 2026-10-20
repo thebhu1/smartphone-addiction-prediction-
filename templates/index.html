@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartphone Addiction Prediction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>📱 Smartphone Addiction Prediction System</h1>
+            <p class="tagline">ML-Based Behavioral Analysis for Addiction Risk Assessment</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h2>Welcome to the Addiction Prediction System</h2>
+            <p>Our machine learning-based system analyzes your smartphone usage patterns to predict potential addiction risks and provide personalized recommendations.</p>
+            <div class="cta-buttons">
+                <a href="/predict_page" class="btn btn-primary">Start Prediction</a>
+                <a href="/model_performance" class="btn btn-secondary">View Model Performance</a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section" id="features">
+            <h2>🎯 System Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>ML-Powered Analysis</h3>
+                    <p>Uses Random Forest algorithm with 90%+ accuracy to analyze behavioral patterns</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Risk Assessment</h3>
+                    <p>Classifies addiction levels into Low, Moderate, and High risk categories</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Personalized Insights</h3>
+                    <p>Provides tailored recommendations based on your usage patterns</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy First</h3>
+                    <p>No data storage, all analysis happens locally on your device</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works" id="how">
+            <h2>📋 How It Works</h2>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Input Your Data</h3>
+                    <p>Enter your smartphone usage statistics including screen time, app usage, and behavioral patterns</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>ML Analysis</h3>
+                    <p>Our trained Random Forest model analyzes 10 behavioral features to detect addiction patterns</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Results</h3>
+                    <p>Receive your addiction risk level with confidence score and detailed recommendations</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <h2>ℹ️ About This Project</h2>
+            <div class="about-content">
+                <p>This system is a <strong>machine learning-based final year project</strong> designed to address the growing concern of smartphone addiction. It demonstrates the practical application of supervised learning for behavioral analysis.</p>
+                
+                <h3>🎓 Academic Objectives</h3>
+                <ul>
+                    <li>Demonstrate real-world machine learning applications</li>
+                    <li>Apply data preprocessing and feature engineering techniques</li>
+                    <li>Compare multiple ML algorithms (Logistic Regression, Random Forest, SVM)</li>
+                    <li>Build interactive web-based prediction system</li>
+                    <li>Address social issues through technology</li>
+                </ul>
+
+                <h3>🔬 Technical Approach</h3>
+                <ul>
+                    <li><strong>Algorithm:</strong> Random Forest Classifier (100 estimators)</li>
+                    <li><strong>Features:</strong> 10 behavioral metrics</li>
+                    <li><strong>Evaluation:</strong> F1-Score, Accuracy, Precision, Recall</li>
+                    <li><strong>Technology:</strong> Python, scikit-learn, Flask</li>
+                </ul>
+
+                <h3>⚠️ Important Note</h3>
+                <p class="disclaimer">This system is for <strong>educational purposes only</strong> and should not be used as a clinical diagnostic tool. For professional help with smartphone addiction, please consult qualified healthcare providers.</p>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Check Your Addiction Risk?</h2>
+            <p>It takes only 2 minutes to get your personalized assessment</p>
+            <a href="/predict_page" class="btn btn-large">Get Started Now</a>
+        </section>
+
+    </div>
+</body>
+</html>

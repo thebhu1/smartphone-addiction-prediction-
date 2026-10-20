@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Addiction Risk - Smartphone Addiction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Smartphone Addiction Risk Prediction</h1>
+            <p class="tagline">Enter your smartphone usage details for personalized assessment</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="container">
+            <a href="/" class="nav-link">&larr; Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Instructions -->
+        <section class="instructions-card">
+            <h2>Instructions</h2>
+            <p>Please provide accurate information about your smartphone usage over the past week. All fields are required for accurate prediction.</p>
+        </section>
+
+        <!-- Prediction Form -->
+        <section class="prediction-form-section">
+            <form id="predictionForm">
+
+                <!-- Usage Time Features -->
+                <div class="form-section">
+                    <div class="section-header-row">
+                        <h3>Usage Time</h3>
+                        <div class="unit-toggle">
+                            <span class="unit-label unit-active" id="hoursLabel">Hours</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="unitToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="unit-label" id="minutesLabel">Minutes</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="daily_screen_time">Daily Screen Time (<span class="time-unit">hours</span>)</label>
+                            <input type="number" id="daily_screen_time" name="daily_screen_time"
+                                   min="1" max="16" step="0.5" value="5" required
+                                   data-min-hours="1" data-max-hours="16" data-step-hours="0.5"
+                                   data-min-minutes="60" data-max-minutes="960" data-step-minutes="15">
+                            <small>Average <span class="time-unit">hours</span> spent on phone daily</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="social_media_time">Social Media Time (<span class="time-unit">hours</span>)</label>
+                            <input type="number" id="social_media_time" name="social_media_time"
+                                   min="0" max="8" step="0.5" value="2" required
+                                   data-min-hours="0" data-max-hours="8" data-step-hours="0.5"
+                                   data-min-minutes="0" data-max-minutes="480" data-step-minutes="15">
+                            <small>Daily time on social media apps</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gaming_time">Gaming Time (<span class="time-unit">hours</span>)</label>
+                            <input type="number" id="gaming_time" name="gaming_time"
+                                   min="0" max="6" step="0.5" value="1" required
+                                   data-min-hours="0" data-max-hours="6" data-step-hours="0.5"
+                                   data-min-minutes="0" data-max-minutes="360" data-step-minutes="15">
+                            <small>Daily time spent on mobile games</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="night_usage">Night Usage (<span class="time-unit">hours</span>)</label>
+                            <input type="number" id="night_usage" name="night_usage"
+                                   min="0" max="5" step="0.25" value="1" required
+                                   data-min-hours="0" data-max-hours="5" data-step-hours="0.25"
+                                   data-min-minutes="0" data-max-minutes="300" data-step-minutes="15">
+                            <small>Usage between 11 PM - 6 AM</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interaction Patterns -->
+                <div class="form-section">
+                    <h3>Interaction Patterns</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="notifications_per_day">Daily Notifications</label>
+                            <input type="number" id="notifications_per_day" name="notifications_per_day"
+                                   min="10" max="1000" step="1" value="100" required>
+                            <small>Average notifications received daily</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="app_launches">App Launches</label>
+                            <input type="number" id="app_launches" name="app_launches"
+                                   min="20" max="500" step="1" value="100" required>
+                            <small>Times apps are opened per day</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="unlock_frequency">Phone Unlocks</label>
+                            <input type="number" id="unlock_frequency" name="unlock_frequency"
+                                   min="20" max="500" step="1" value="80" required>
+                            <small>Times you unlock phone daily</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="session_duration">Avg Session Duration (min)</label>
+                            <input type="number" id="session_duration" name="session_duration"
+                                   min="2" max="30" step="1" value="10" required>
+                            <small>Average time per phone session</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Impact Assessment -->
+                <div class="form-section">
+                    <h3>Impact Assessment</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sleep_disturbance">Sleep Disturbance (0-10)</label>
+                            <input type="number" id="sleep_disturbance" name="sleep_disturbance"
+                                   min="0" max="10" step="1" value="5" required>
+                            <small>How much phone affects sleep (0=none, 10=severe)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weekend_usage_increase">Weekend Usage Increase (%)</label>
+                            <input type="number" id="weekend_usage_increase" name="weekend_usage_increase"
+                                   min="-20" max="100" step="1" value="30" required>
+                            <small>Usage increase on weekends vs weekdays</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-large">
+                        Analyze My Usage
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                        Reset Form
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+            <div class="spinner"></div>
+            <p>Analyzing your usage patterns...</p>
+        </div>
+
+        <!-- Results Section -->
+        <section id="resultsSection" class="results-section" style="display: none;">
+            <h2>Your Addiction Risk Assessment</h2>
+
+            <!-- Risk Level Display -->
+            <div id="riskLevelCard" class="risk-level-card">
+                <div class="risk-icon">!</div>
+                <h3 id="riskTitle">Risk Level</h3>
+                <p id="riskDescription">Description</p>
+            </div>
+
+            <!-- Probability Scores -->
+            <div class="probability-section">
+                <h3>Confidence Scores</h3>
+                <div class="probability-bars">
+                    <div class="prob-bar">
+                        <label>Low Risk</label>
+                        <div class="bar-container">
+                            <div class="bar bar-green" id="probLow" style="width: 0%"></div>
+                            <span class="bar-value" id="probLowValue">0%</span>
+                        </div>
+                    </div>
+                    <div class="prob-bar">
+                        <label>Moderate Risk</label>
+                        <div class="bar-container">
+                            <div class="bar bar-orange" id="probModerate" style="width: 0%"></div>
+                            <span class="bar-value" id="probModerateValue">0%</span>
+                        </div>
+                    </div>
+                    <div class="prob-bar">
+                        <label>High Risk</label>
+                        <div class="bar-container">
+                            <div class="bar bar-red" id="probHigh" style="width: 0%"></div>
+                            <span class="bar-value" id="probHighValue">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div id="recommendationsSection" class="recommendations-section">
+                <h3>Recommendations</h3>
+                <ul id="recommendationsList"></ul>
+            </div>
+
+            <!-- Risk Explanation -->
+            <div id="explanationSection" class="explanation-section">
+                <h3>Why this prediction?</h3>
+                <p id="riskExplanationText"></p>
+                <p id="summarySentenceText" class="summary-sentence"></p>
+            </div>
+
+            <!-- Actions -->
+            <div class="result-actions">
+                <button type="button" onclick="resetPredictionView()" class="btn btn-primary">
+                    Make Another Prediction
+                </button>
+                <a href="/" class="btn btn-secondary">Back to Home</a>
+                <button type="button" id="generateReportBtn" class="btn btn-report" disabled>
+                    Generate Report
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Toast -->
+    <div id="reportToast" class="toast-message" role="status" aria-live="polite"></div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

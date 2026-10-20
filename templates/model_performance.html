@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Performance - Smartphone Addiction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>📊 Model Performance Dashboard</h1>
+            <p class="tagline">Machine Learning Model Evaluation & Comparison</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="container">
+            <a href="/" class="nav-link">← Back to Home</a>
+            <a href="/predict_page" class="nav-link">Make Prediction →</a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Overview Section -->
+        <section class="performance-overview">
+            <h2>🎯 Model Performance Summary</h2>
+            <div class="metrics-grid" id="metricsGrid">
+                <!-- Metrics will be loaded dynamically -->
+                <div class="metric-card">
+                    <div class="metric-icon">🏆</div>
+                    <h3>Best Model</h3>
+                    <p class="metric-value" id="bestModel">Loading...</p>
+                    <small>Based on F1-Score</small>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🎯</div>
+                    <h3>Accuracy</h3>
+                    <p class="metric-value" id="bestAccuracy">--</p>
+                    <small>Overall correctness</small>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">📈</div>
+                    <h3>F1-Score</h3>
+                    <p class="metric-value" id="bestF1Score">--</p>
+                    <small>Harmonic mean metric</small>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🎓</div>
+                    <h3>Models Trained</h3>
+                    <p class="metric-value">3</p>
+                    <small>Compared algorithms</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Model Comparison Chart -->
+        <section class="chart-section">
+            <h2>📊 Model Comparison</h2>
+            <div class="chart-container">
+                <canvas id="comparisonChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Detailed Metrics Table -->
+        <section class="metrics-table-section">
+            <h2>📋 Detailed Performance Metrics</h2>
+            <div class="table-responsive">
+                <table class="metrics-table" id="metricsTable">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Accuracy</th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>F1-Score</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Will be populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Feature Importance -->
+        <section class="feature-importance-section">
+            <h2>🔑 Top Important Features</h2>
+            <p class="section-description">Features ranked by their importance in predicting addiction levels (Random Forest analysis)</p>
+            <div class="features-chart-container">
+                <canvas id="featureImportanceChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Confusion Matrices -->
+        <section class="confusion-matrix-section">
+            <h2>🎯 Confusion Matrices</h2>
+            <p class="section-description">Visual representation of prediction accuracy across all classes</p>
+            <div class="matrix-grid">
+                <div class="matrix-card">
+                    <h3>Logistic Regression</h3>
+                    <img src="{{ url_for('static', filename='../models/confusion_matrix_Logistic_Regression.png') }}" 
+                         alt="Logistic Regression Confusion Matrix"
+                         onerror="this.onerror=null; this.style.display='none';">
+                </div>
+                <div class="matrix-card">
+                    <h3>Random Forest</h3>
+                    <img src="{{ url_for('static', filename='../models/confusion_matrix_Random_Forest.png') }}" 
+                         alt="Random Forest Confusion Matrix"
+                         onerror="this.onerror=null; this.style.display='none';">
+                </div>
+                <div class="matrix-card">
+                    <h3>Support Vector Machine</h3>
+                    <img src="{{ url_for('static', filename='../models/confusion_matrix_SVM.png') }}" 
+                         alt="SVM Confusion Matrix"
+                         onerror="this.onerror=null; this.style.display='none';">
+                </div>
+            </div>
+        </section>
+
+        <!-- Model Information -->
+        <section class="model-info-section">
+            <h2>ℹ️ Model Information</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🤖 Logistic Regression</h3>
+                    <ul>
+                        <li><strong>Type:</strong> Linear classifier</li>
+                        <li><strong>Best for:</strong> Baseline performance</li>
+                        <li><strong>Advantages:</strong> Fast, interpretable</li>
+                        <li><strong>Training Time:</strong> Very fast</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>🌲 Random Forest</h3>
+                    <ul>
+                        <li><strong>Type:</strong> Ensemble learning</li>
+                        <li><strong>Best for:</strong> Complex patterns</li>
+                        <li><strong>Advantages:</strong> High accuracy, robust</li>
+                        <li><strong>Training Time:</strong> Moderate</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>🎯 Support Vector Machine</h3>
+                    <ul>
+                        <li><strong>Type:</strong> Kernel-based classifier</li>
+                        <li><strong>Best for:</strong> Non-linear boundaries</li>
+                        <li><strong>Advantages:</strong> Effective in high dimensions</li>
+                        <li><strong>Training Time:</strong> Slower</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dataset Info -->
+        <section class="dataset-info">
+            <h2>📊 Dataset Information</h2>
+            <div class="dataset-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Total Samples:</span>
+                    <span class="stat-value">2,400</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Features:</span>
+                    <span class="stat-value">10</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Classes:</span>
+                    <span class="stat-value">3 (Low, Moderate, High)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Train/Test Split:</span>
+                    <span class="stat-value">80/20</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/performance.js') }}"></script>
+</body>
+</html>

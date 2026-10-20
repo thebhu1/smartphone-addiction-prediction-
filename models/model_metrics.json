@@ -1,0 +1,35 @@
+{
+    "models": {
+        "Logistic Regression": {
+            "accuracy": 0.95625,
+            "precision": 0.9593422694597468,
+            "recall": 0.9488291686311489,
+            "f1_score": 0.9535886451017754
+        },
+        "Random Forest": {
+            "accuracy": 0.9666666666666667,
+            "precision": 0.9687881562881563,
+            "recall": 0.9605081936765106,
+            "f1_score": 0.9643320271653986
+        },
+        "SVM": {
+            "accuracy": 0.9520833333333333,
+            "precision": 0.9587254164718954,
+            "recall": 0.9427685625705428,
+            "f1_score": 0.949666151505086
+        }
+    },
+    "best_model": "Random Forest",
+    "feature_importance": {
+        "daily_screen_time": 0.17146198940965615,
+        "social_media_time": 0.0438011943633296,
+        "gaming_time": 0.028445782888634794,
+        "notifications_per_day": 0.12180946433261866,
+        "app_launches": 0.030010282019405633,
+        "night_usage": 0.17638126948868207,
+        "sleep_disturbance": 0.003828607640602005,
+        "unlock_frequency": 0.10473851503882038,
+        "weekend_usage_increase": 0.15262528433006262,
+        "session_duration": 0.16689761048818813
+    }
+}
